@@ -1,0 +1,15 @@
+# Hệ điều hành
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Trình soạn thảo
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# File log hoặc tạm
+*.log
