@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lịch hẹn của tôi - Mentor Connect</title>
+  <meta name="description" content="Quản lý các buổi hẹn cố vấn 1-1 sắp tới, xem lịch sử buổi học và vào phòng học trực tuyến.">
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS hệ thống -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & THANH ĐIỀU HƯỚNG CHUNG
+       ========================================================================== -->
+  <header class="c-header">
+    <div class="l-container c-header__inner">
+      <a href="index.html" class="c-logo" aria-label="Mentor Connect - Về trang chủ">
+        <span class="c-logo__icon" aria-hidden="true">🤝</span>
+        <div class="c-logo__text">
+          <span class="c-logo__title">Mentor Connect</span>
+          <span class="c-logo__sub">Cổng kết nối Cố vấn & Học nhóm</span>
+        </div>
+      </a>
+
+      <!-- Nút Hamburger Menu trên di động -->
+      <button type="button" class="c-hamburger js-hamburger-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="main-nav">
+        <span class="c-hamburger__line"></span>
+        <span class="c-hamburger__line"></span>
+        <span class="c-hamburger__line"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <nav id="main-nav" class="c-nav js-nav-menu" aria-label="Thanh điều hướng chính">
+        <ul class="c-nav__list">
+          <li>
+            <a href="index.html" class="c-nav__link">
+              <span aria-hidden="true">🏠</span> Trang chủ
+            </a>
+          </li>
+          <li>
+            <a href="my-bookings.html" class="c-nav__link c-nav__link--active" aria-current="page">
+              <span aria-hidden="true">📅</span> Lịch hẹn của tôi
+              <span class="c-nav__badge js-nav-upcoming-badge c-nav__badge--empty" aria-label="Số buổi sắp tới">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT: QUẢN LÝ LỊCH HẸN
+       ========================================================================== -->
+  <main class="l-main">
+    <div class="l-container">
+
+      <!-- Tiêu đề trang & Nút Đặt lại dữ liệu mẫu -->
+      <div class="l-flex l-justify-between l-items-center l-flex-wrap l-gap-4" style="margin-bottom: var(--spacing-6);">
+        <div>
+          <h1 class="c-hero__title" style="text-align: left; font-size: var(--font-size-2xl); margin-bottom: 4px;">
+            Lịch hẹn của tôi
+          </h1>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-muted);">
+            Người học: <strong>Nguyễn Minh Anh</strong> • Quản lý các buổi gặp gỡ, nhận link phòng học trực tuyến và theo dõi lịch sử
+          </p>
+        </div>
+
+        <button type="button" class="c-btn c-btn--outline c-btn--sm" id="reset-sample-btn" title="Xóa và khôi phục lại 2 lịch hẹn mẫu để demo">
+          <span aria-hidden="true">↺</span> Đặt lại dữ liệu mẫu
+        </button>
+      </div>
+
+      <!-- PHẦN ĐẦU: 3 THẺ THỐNG KÊ TỔNG QUAN -->
+      <section class="c-stats-header" aria-label="Thống kê lịch hẹn">
+        <div class="c-stat-card">
+          <div class="c-stat-card__icon" aria-hidden="true">📅</div>
+          <div>
+            <div class="c-stat-card__val" id="stat-upcoming-count">0</div>
+            <div class="c-stat-card__title">Buổi hẹn sắp tới</div>
+          </div>
+        </div>
+
+        <div class="c-stat-card">
+          <div class="c-stat-card__icon" aria-hidden="true">⏳</div>
+          <div>
+            <div class="c-stat-card__val" id="stat-total-hours">0 giờ</div>
+            <div class="c-stat-card__title">Tổng số giờ đã đặt</div>
+          </div>
+        </div>
+
+        <div class="c-stat-card">
+          <div class="c-stat-card__icon" aria-hidden="true">👥</div>
+          <div>
+            <div class="c-stat-card__val" id="stat-connected-mentors">0</div>
+            <div class="c-stat-card__title">Số cố vấn đã kết nối</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HAI TAB: "SẮP TỚI" VÀ "LỊCH SỬ" -->
+      <div class="c-booking-tabs" role="tablist" aria-label="Chuyển đổi danh sách lịch hẹn">
+        <button type="button" class="c-booking-tab c-booking-tab--active" id="tab-upcoming" role="tab" aria-selected="true" aria-controls="panel-upcoming">
+          Buổi sắp tới (<span id="tab-upcoming-count">0</span>)
+        </button>
+        <button type="button" class="c-booking-tab" id="tab-history" role="tab" aria-selected="false" aria-controls="panel-history">
+          Lịch sử buổi học (<span id="tab-history-count">0</span>)
+        </button>
+      </div>
+
+      <!-- PANEL 1: DANH SÁCH BUỔI SẮP TỚI -->
+      <section id="panel-upcoming" role="tabpanel" aria-labelledby="tab-upcoming">
+        <div class="c-booking-cards-list" id="upcoming-bookings-list">
+          <!-- Render động -->
+        </div>
+
+        <!-- Empty state khi không có buổi sắp tới -->
+        <div id="upcoming-empty-state" class="c-empty-state" style="display: none;">
+          <div class="c-empty-state__icon" aria-hidden="true">🗓️</div>
+          <h2 class="c-empty-state__title">Bạn chưa có buổi hẹn nào sắp tới</h2>
+          <p class="c-empty-state__desc">
+            Hãy khám phá đội ngũ cố vấn chuyên môn, chọn khung giờ rảnh phù hợp và lên lịch học 1-1 ngay hôm nay!
+          </p>
+          <a href="index.html" class="c-btn c-btn--primary">
+            <span aria-hidden="true">🔍</span> Tìm cố vấn ngay
+          </a>
+        </div>
+      </section>
+
+      <!-- PANEL 2: DANH SÁCH LỊCH SỬ (ĐÃ HOÀN THÀNH / ĐÃ HỦY) -->
+      <section id="panel-history" role="tabpanel" aria-labelledby="tab-history" style="display: none;">
+        <div class="c-booking-cards-list" id="history-bookings-list">
+          <!-- Render động -->
+        </div>
+
+        <!-- Empty state khi lịch sử trống -->
+        <div id="history-empty-state" class="c-empty-state" style="display: none;">
+          <div class="c-empty-state__icon" aria-hidden="true">📜</div>
+          <h2 class="c-empty-state__title">Chưa có lịch sử buổi hẹn nào</h2>
+          <p class="c-empty-state__desc">
+            Các buổi hẹn đã hoàn thành hoặc đã hủy sẽ được lưu trữ và hiển thị tại đây.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER DÙNG CHUNG
+       ========================================================================== -->
+  <footer class="c-footer">
+    <div class="l-container">
+      <div class="c-footer__grid">
+        <div class="c-footer__col" style="flex: 2 1 320px;">
+          <div class="c-logo" style="margin-bottom: var(--spacing-3); color: #ffffff;">
+            <span class="c-logo__icon" style="box-shadow: none;" aria-hidden="true">🤝</span>
+            <span class="c-logo__title" style="color: #ffffff; font-size: var(--font-size-lg);">Mentor Connect</span>
+          </div>
+          <p style="font-size: var(--font-size-xs); line-height: 1.6; max-width: 380px;">
+            Hệ thống Cổng kết nối Cố vấn & Học nhóm (Mentor-Mentee Connector). Phân hệ 5 - Học phần Thiết kế Web.
+          </p>
+        </div>
+
+        <div class="c-footer__col">
+          <h4 class="c-footer__title">Điều hướng</h4>
+          <ul class="c-footer__links">
+            <li><a href="index.html" class="c-footer__link">Trang chủ Cố vấn</a></li>
+            <li><a href="my-bookings.html" class="c-footer__link">Lịch hẹn của tôi</a></li>
+          </ul>
+        </div>
+
+        <div class="c-footer__col">
+          <h4 class="c-footer__title">Trạng thái lưu trữ</h4>
+          <ul class="c-footer__links" style="font-size: var(--font-size-xs);">
+            <li>Tầng lưu trữ: <strong>localStorage (mmc_bookings)</strong></li>
+            <li>Đồng bộ tức thì, không tải lại trang</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="c-footer__bottom">
+        <div>&copy; 2026 Mentor-Mentee Connector. Toàn quyền tác giả.</div>
+        <div>Học phần Thiết kế Web • Không sử dụng thư viện ngoài</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS: data.js -> utils.js -> storage.js -> common.js -> bookings.js
+       ========================================================================== -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/bookings.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ sơ Cố vấn - Mentor Connect</title>
+  <meta name="description" content="Xem chi tiết thông tin chuyên môn, đánh giá 360 độ và chọn khung giờ đặt lịch cố vấn 1-1.">
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS hệ thống -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & THANH ĐIỀU HƯỚNG CHUNG
+       ========================================================================== -->
+  <header class="c-header">
+    <div class="l-container c-header__inner">
+      <a href="index.html" class="c-logo" aria-label="Mentor Connect - Về trang chủ">
+        <span class="c-logo__icon" aria-hidden="true">🤝</span>
+        <div class="c-logo__text">
+          <span class="c-logo__title">Mentor Connect</span>
+          <span class="c-logo__sub">Cổng kết nối Cố vấn & Học nhóm</span>
+        </div>
+      </a>
+
+      <!-- Nút Hamburger Menu trên di động -->
+      <button type="button" class="c-hamburger js-hamburger-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="main-nav">
+        <span class="c-hamburger__line"></span>
+        <span class="c-hamburger__line"></span>
+        <span class="c-hamburger__line"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <nav id="main-nav" class="c-nav js-nav-menu" aria-label="Thanh điều hướng chính">
+        <ul class="c-nav__list">
+          <li>
+            <a href="index.html" class="c-nav__link">
+              <span aria-hidden="true">🏠</span> Trang chủ
+            </a>
+          </li>
+          <li>
+            <a href="my-bookings.html" class="c-nav__link">
+              <span aria-hidden="true">📅</span> Lịch hẹn của tôi
+              <span class="c-nav__badge js-nav-upcoming-badge c-nav__badge--empty" aria-label="Số buổi sắp tới">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT: HỒ SƠ CHI TIẾT & ĐẶT LỊCH (BỐ CỤC 2 CỘT BẰNG FLEXBOX)
+       ========================================================================== -->
+  <main class="l-main">
+    <div class="l-container">
+
+      <!-- Breadcrumb điều hướng -->
+      <nav class="c-breadcrumb" aria-label="Đường dẫn trang">
+        <a href="index.html">Trang chủ</a>
+        <span class="c-breadcrumb__sep" aria-hidden="true">/</span>
+        <a href="index.html">Danh sách Cố vấn</a>
+        <span class="c-breadcrumb__sep" aria-hidden="true">/</span>
+        <span id="breadcrumb-current-mentor" aria-current="page">Chi tiết Cố vấn</span>
+      </nav>
+
+      <!-- Khối khi KHÔNG TÌM THẤY CỐ VẤN (Sai/Thiếu ID) -->
+      <div id="mentor-not-found" class="c-empty-state" style="display: none;">
+        <div class="c-empty-state__icon" aria-hidden="true">⚠️</div>
+        <h2 class="c-empty-state__title">Không tìm thấy thông tin Cố vấn</h2>
+        <p class="c-empty-state__desc">
+          Mã cố vấn trong đường dẫn không tồn tại hoặc đã bị thay đổi. Vui lòng quay lại danh sách để lựa chọn cố vấn khác.
+        </p>
+        <a href="index.html" class="c-btn c-btn--primary">
+          <span aria-hidden="true">←</span> Quay về Trang chủ
+        </a>
+      </div>
+
+      <!-- Khối hiển thị hồ sơ 2 cột bằng Flexbox -->
+      <div id="mentor-profile-content" class="l-profile-layout" style="display: none;">
+
+        <!-- CỘT CHÍNH (BÊN TRÁI): THÔNG TIN, 360 REVIEW, LỊCH RẢNH -->
+        <div class="l-profile-main">
+
+          <!-- 1. Header Card: Avatar lớn, Tên, Chức danh, Kỹ năng, 4 chỉ số -->
+          <article class="c-profile-header-card" aria-labelledby="mentor-name">
+            <div class="c-profile-header-top">
+              <div id="mentor-avatar-container"></div>
+              <div style="flex: 1; min-width: 0;">
+                <h1 id="mentor-name" class="c-hero__title" style="text-align: left; margin-bottom: 4px; font-size: var(--font-size-2xl);">
+                  Tên Cố vấn
+                </h1>
+                <p id="mentor-title" style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--spacing-3);">
+                  Chức danh
+                </p>
+                <div class="c-skill-tags" id="mentor-skills-tags" aria-label="Kỹ năng chuyên môn">
+                  <!-- Skills pills -->
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 chỉ số nổi bật -->
+            <div class="c-profile-stats-grid">
+              <div class="c-stat-box">
+                <div class="c-stat-box__val" id="stat-rating">5.0</div>
+                <div class="c-stat-box__label">Điểm đánh giá</div>
+              </div>
+              <div class="c-stat-box">
+                <div class="c-stat-box__val" id="stat-reviews">0</div>
+                <div class="c-stat-box__label">Đánh giá 360°</div>
+              </div>
+              <div class="c-stat-box">
+                <div class="c-stat-box__val" id="stat-experience">0 năm</div>
+                <div class="c-stat-box__label">Kinh nghiệm</div>
+              </div>
+              <div class="c-stat-box">
+                <div class="c-stat-box__val" id="stat-sessions">0</div>
+                <div class="c-stat-box__label">Buổi đã dạy</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Giới thiệu bản thân & Ngôn ngữ -->
+          <section class="c-360-card" aria-labelledby="bio-heading">
+            <h2 id="bio-heading" class="c-section-title">
+              <span aria-hidden="true">📝</span> Giới thiệu bản thân & Phương châm cố vấn
+            </h2>
+            <p id="mentor-bio" style="font-size: var(--font-size-base); line-height: 1.7; color: var(--color-text-main); margin-bottom: var(--spacing-4);">
+              Nội dung giới thiệu...
+            </p>
+            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted);">
+              <strong>Ngôn ngữ hỗ trợ:</strong> <span id="mentor-languages">Tiếng Việt</span>
+            </div>
+          </section>
+
+          <!-- 3. Khối Đánh giá Năng lực 360° -->
+          <section class="c-360-card" aria-labelledby="review-heading">
+            <div class="l-flex l-justify-between l-items-center l-flex-wrap l-gap-4" style="margin-bottom: var(--spacing-6);">
+              <h2 id="review-heading" class="c-section-title" style="margin-bottom: 0;">
+                <span aria-hidden="true">🌟</span> Đánh giá Năng lực 360°
+              </h2>
+              <div class="l-flex l-items-center l-gap-2">
+                <span class="c-star-rating" style="font-size: var(--font-size-xl);">
+                  <span aria-hidden="true">★</span> <span id="avg-rating-badge">4.9</span> / 5.0
+                </span>
+                <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);" id="total-reviews-count">
+                  (46 đánh giá)
+                </span>
+              </div>
+            </div>
+
+            <!-- 4 thanh tiến trình theo ratingBreakdown -->
+            <div class="c-360-breakdown" aria-label="Điểm chi tiết theo 4 tiêu chuẩn 360 độ">
+              <div class="c-360-metric">
+                <span class="c-360-metric__label">Chuyên môn</span>
+                <div class="c-progress-bar">
+                  <div class="c-progress-bar__fill" id="pb-expertise" style="width: 0%;"></div>
+                </div>
+                <span class="c-360-metric__val" id="val-expertise">5.0</span>
+              </div>
+
+              <div class="c-360-metric">
+                <span class="c-360-metric__label">Giao tiếp</span>
+                <div class="c-progress-bar">
+                  <div class="c-progress-bar__fill" id="pb-communication" style="width: 0%;"></div>
+                </div>
+                <span class="c-360-metric__val" id="val-communication">4.8</span>
+              </div>
+
+              <div class="c-360-metric">
+                <span class="c-360-metric__label">Đúng giờ</span>
+                <div class="c-progress-bar">
+                  <div class="c-progress-bar__fill" id="pb-punctuality" style="width: 0%;"></div>
+                </div>
+                <span class="c-360-metric__val" id="val-punctuality">4.9</span>
+              </div>
+
+              <div class="c-360-metric">
+                <span class="c-360-metric__label">Hữu ích</span>
+                <div class="c-progress-bar">
+                  <div class="c-progress-bar__fill" id="pb-helpfulness" style="width: 0%;"></div>
+                </div>
+                <span class="c-360-metric__val" id="val-helpfulness">5.0</span>
+              </div>
+            </div>
+
+            <!-- Danh sách các bài đánh giá chi tiết -->
+            <h3 style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4);">
+              Phản hồi gần đây từ Người học & Đồng nghiệp
+            </h3>
+            <div class="c-reviews-list" id="reviews-list-container">
+              <!-- Render động -->
+            </div>
+          </section>
+
+          <!-- 4. Khối Lịch rảnh (Availability slots) - Flexbox Bắt buộc -->
+          <section class="c-360-card" aria-labelledby="slots-heading" id="availability-section">
+            <h2 id="slots-heading" class="c-section-title">
+              <span aria-hidden="true">📅</span> Lịch rảnh trong tuần (Availability Slots)
+            </h2>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--spacing-4);">
+              Chọn một ngày và khung giờ bên dưới để đặt lịch hẹn cố vấn 1-1 (mỗi buổi kéo dài 60 phút).
+            </p>
+
+            <!-- Hàng tab 7 ngày tới (Flexbox cuộn ngang trên mobile) -->
+            <div class="c-day-tabs" id="day-tabs-container" role="tablist" aria-label="Chọn ngày trong 7 ngày tới">
+              <!-- Render động 7 ngày -->
+            </div>
+
+            <!-- Chú thích 4 trạng thái (Legend) -->
+            <div class="c-slot-legend" style="margin-top: var(--spacing-4); margin-bottom: var(--spacing-4);" aria-label="Chú thích trạng thái khung giờ">
+              <div class="c-slot-legend__item">
+                <span class="c-slot-legend__sample c-slot-legend__sample--available"></span>
+                <span>Còn trống (Chọn được)</span>
+              </div>
+              <div class="c-slot-legend__item">
+                <span class="c-slot-legend__sample c-slot-legend__sample--selected"></span>
+                <span>Đang chọn</span>
+              </div>
+              <div class="c-slot-legend__item">
+                <span class="c-slot-legend__sample c-slot-legend__sample--booked"></span>
+                <span>Đã kín / Đã đặt</span>
+              </div>
+              <div class="c-slot-legend__item">
+                <span class="c-slot-legend__sample c-slot-legend__sample--past"></span>
+                <span>Đã qua</span>
+              </div>
+            </div>
+
+            <!-- Danh sách các khung giờ (Flexbox: flex-wrap, gap) -->
+            <div class="c-slots-grid" id="slots-grid-container" role="group" aria-label="Khung giờ rảnh">
+              <!-- Render các slot dạng button -->
+            </div>
+
+            <!-- Thông báo ngày không có lịch -->
+            <div id="no-slots-day-message" style="display: none; padding: var(--spacing-6); text-align: center; color: var(--color-text-muted); font-size: var(--font-size-sm); background-color: var(--color-bg-body); border-radius: var(--radius-md);">
+              <span aria-hidden="true">🛌</span> Cố vấn không có lịch rảnh vào ngày này. Vui lòng chọn một ngày khác phía trên.
+            </div>
+          </section>
+
+        </div>
+
+        <!-- CỘT PHẢI (ASIDE): KHỐI ĐẶT LỊCH HẸN (STICKY TRÊN DESKTOP) -->
+        <aside class="l-profile-aside" aria-labelledby="booking-form-title">
+          <div class="c-booking-aside">
+            <h2 id="booking-form-title" class="c-booking-aside__title">
+              <span aria-hidden="true">⚡</span> Đặt lịch Cố vấn 1-1
+            </h2>
+
+            <!-- Thông tin người học mặc định -->
+            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: var(--spacing-3);">
+              Người học: <strong style="color: var(--color-text-main);">Nguyễn Minh Anh</strong> (Đại học Bách Khoa)
+            </div>
+
+            <!-- Tóm tắt slot đang chọn -->
+            <div class="c-booking-slot-summary" id="slot-summary-box">
+              <div class="c-booking-slot-summary__empty" id="slot-summary-empty">
+                👉 Vui lòng chọn một khung giờ rảnh ở bảng bên trái.
+              </div>
+              <div id="slot-summary-selected" style="display: none;">
+                <div style="font-weight: var(--font-weight-bold); color: var(--color-primary-dark); margin-bottom: 4px;" id="summary-datetime-text">
+                  Thứ Hai, 17/11/2026
+                </div>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                  Thời lượng: <strong>60 phút</strong> (Phòng học trực tuyến)
+                </div>
+              </div>
+            </div>
+
+            <!-- Form điền thông tin đặt lịch -->
+            <form id="booking-form" novalidate>
+              
+              <!-- Thông báo lỗi chung của form (role="alert" inline) -->
+              <div id="form-general-error" class="c-form-error" style="display: none; padding: var(--spacing-3); background-color: var(--color-danger-light); border: 1px solid var(--color-danger-border); border-radius: var(--radius-md); margin-bottom: var(--spacing-4);" role="alert">
+                <!-- Nội dung lỗi -->
+              </div>
+
+              <!-- Trường 1: Chủ đề trao đổi (Bắt buộc, 5-100 ký tự) -->
+              <div class="c-form-group">
+                <label for="topic-input" class="c-label">
+                  <span>Chủ đề muốn trao đổi <span class="c-label__req">*</span></span>
+                  <span style="font-size: 11px; color: var(--color-text-muted);">(5 - 100 ký tự)</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="topic-input" 
+                  class="c-input" 
+                  placeholder="Ví dụ: Định hướng học Frontend, review portfolio..." 
+                  maxlength="100"
+                  required
+                  aria-required="true"
+                  aria-describedby="topic-error topic-hint"
+                >
+                <div id="topic-hint" class="c-form-hint">
+                  <span>Nêu ngắn gọn nội dung bạn cần hỗ trợ</span>
+                  <span id="topic-char-count">0/100</span>
+                </div>
+                <div id="topic-error" class="c-form-error" style="display: none;" role="alert"></div>
+              </div>
+
+              <!-- Trường 2: Ghi chú thêm (Tối đa 300 ký tự) -->
+              <div class="c-form-group">
+                <label for="note-input" class="c-label">
+                  <span>Ghi chú thêm cho Cố vấn</span>
+                  <span style="font-size: 11px; color: var(--color-text-muted);">(Không bắt buộc)</span>
+                </label>
+                <textarea 
+                  id="note-input" 
+                  class="c-textarea" 
+                  placeholder="Đính kèm link dự án, bài tập hoặc các câu hỏi cụ thể bạn đã chuẩn bị trước..." 
+                  maxlength="300"
+                  aria-describedby="note-hint"
+                ></textarea>
+                <div id="note-hint" class="c-form-hint">
+                  <span>Tối đa 300 ký tự</span>
+                  <span id="note-char-count">0/300</span>
+                </div>
+              </div>
+
+              <!-- Nút xác nhận đặt lịch (disabled khi chưa chọn slot) -->
+              <button 
+                type="submit" 
+                class="c-btn c-btn--primary c-btn--lg c-btn--full" 
+                id="submit-booking-btn" 
+                disabled 
+                aria-disabled="true"
+              >
+                <span aria-hidden="true">✔</span> Xác nhận đặt lịch
+              </button>
+
+              <p style="font-size: 11px; color: var(--color-text-muted); text-align: center; margin-top: var(--spacing-3); line-height: 1.4;">
+                🛡️ Hệ thống tự động kiểm tra trùng lịch và kích hoạt phòng học trực tuyến ngay khi xác nhận.
+              </p>
+            </form>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       MODAL THÀNH CÔNG: ĐẶT LỊCH THÀNH CÔNG (TẬP TRUNG FOCUS & TRẢ FOCUS)
+       ========================================================================== -->
+  <div id="booking-success-modal" class="c-modal-backdrop" aria-hidden="true">
+    <div class="c-modal" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+      <div class="c-modal__header" style="background-color: var(--color-success-light); border-bottom-color: var(--color-success-border);">
+        <h3 class="c-modal__title" id="success-modal-title" style="color: #065f46;">
+          <span aria-hidden="true">🎉</span> Đặt lịch hẹn thành công!
+        </h3>
+        <button type="button" class="c-modal__close-btn" data-close-modal aria-label="Đóng hộp thoại">✕</button>
+      </div>
+
+      <div class="c-modal__body">
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--spacing-4);">
+          Lịch hẹn cố vấn 1-1 của bạn đã được ghi nhận vào hệ thống. Bạn có thể vào phòng học trực tuyến đúng giờ hẹn.
+        </p>
+
+        <div style="background-color: var(--color-bg-body); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--spacing-4); font-size: var(--font-size-sm); display: flex; flex-direction: column; gap: var(--spacing-2);">
+          <div><strong>Mã lịch hẹn:</strong> <code id="modal-booking-id" style="color: var(--color-primary); font-weight: bold;">BK-12345</code></div>
+          <div class="l-flex l-items-center l-gap-3" style="margin: var(--spacing-1) 0;">
+            <div id="modal-mentor-avatar"></div>
+            <div><strong>Cố vấn:</strong> <span id="modal-mentor-name">Trần Hoàng Nam</span></div>
+          </div>
+          <div><strong>Thời gian:</strong> <span id="modal-datetime">Thứ Hai, 17/11/2026 (19:00 - 20:00)</span></div>
+          <div><strong>Chủ đề:</strong> <span id="modal-topic">Review portfolio</span></div>
+          <div><strong>Đường dẫn phòng học demo:</strong> <br><a id="modal-meeting-link" href="#" target="_blank" style="word-break: break-all; font-size: var(--font-size-xs);">https://meet.example.com/mmc-xxxxx</a></div>
+        </div>
+      </div>
+
+      <div class="c-modal__footer">
+        <button type="button" class="c-btn c-btn--secondary" data-close-modal id="continue-browsing-btn">
+          Tiếp tục xem hồ sơ
+        </button>
+        <a href="my-bookings.html" class="c-btn c-btn--primary" id="view-my-bookings-btn">
+          <span aria-hidden="true">📅</span> Xem lịch hẹn của tôi
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER DÙNG CHUNG
+       ========================================================================== -->
+  <footer class="c-footer">
+    <div class="l-container">
+      <div class="c-footer__grid">
+        <div class="c-footer__col" style="flex: 2 1 320px;">
+          <div class="c-logo" style="margin-bottom: var(--spacing-3); color: #ffffff;">
+            <span class="c-logo__icon" style="box-shadow: none;" aria-hidden="true">🤝</span>
+            <span class="c-logo__title" style="color: #ffffff; font-size: var(--font-size-lg);">Mentor Connect</span>
+          </div>
+          <p style="font-size: var(--font-size-xs); line-height: 1.6; max-width: 380px;">
+            Hệ thống Cổng kết nối Cố vấn & Học nhóm (Mentor-Mentee Connector). Phân hệ 5 - Học phần Thiết kế Web hiện đại.
+          </p>
+        </div>
+
+        <div class="c-footer__col">
+          <h4 class="c-footer__title">Điều hướng</h4>
+          <ul class="c-footer__links">
+            <li><a href="index.html" class="c-footer__link">Trang chủ Cố vấn</a></li>
+            <li><a href="my-bookings.html" class="c-footer__link">Lịch hẹn của tôi</a></li>
+          </ul>
+        </div>
+
+        <div class="c-footer__col">
+          <h4 class="c-footer__title">Người học</h4>
+          <ul class="c-footer__links" style="font-size: var(--font-size-xs);">
+            <li>Họ tên: <strong>Nguyễn Minh Anh</strong></li>
+            <li>Trạng thái: Đã kết nối</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="c-footer__bottom">
+        <div>&copy; 2026 Mentor-Mentee Connector. Toàn quyền tác giả.</div>
+        <div>Học phần Thiết kế Web • Bố cục Flexbox chuẩn</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS: data.js -> utils.js -> storage.js -> common.js -> profile.js
+       ========================================================================== -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/profile.js"></script>
+
+</body>
+</html>
