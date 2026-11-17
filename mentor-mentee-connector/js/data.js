@@ -90,7 +90,7 @@ const MENTORS = [
   },
   {
     id: "m2",
-    name: "Lê Thị Thảo Trang",
+    name: "Si lùn",
     avatar: "images/avatars/m2.jpg",
     title: "Lead Data Scientist @ Viettel AI Lab",
     bio: "Chuyên gia nghiên cứu và ứng dụng Khoa học dữ liệu, Machine Learning với hơn 6 năm thực chiến. Từng đạt học bổng thạc sĩ toàn phần tại Đại học Quốc gia Singapore (NUS). Đam mê đồng hành cùng các bạn trẻ khám phá vẻ đẹp của dữ liệu và xây dựng lộ trình học tập bài bản từ toán ứng dụng đến mô hình thực tế.",
@@ -139,7 +139,7 @@ const MENTORS = [
   },
   {
     id: "m3",
-    name: "Phạm Minh Khoa",
+    name: "Độc Tày",
     avatar: "images/avatars/m3.jpg",
     title: "Senior Product Designer @ MoMo FinTech",
     bio: "Nhà thiết kế sản phẩm số với hơn 8 năm kiến tạo trải nghiệm người dùng cho hàng triệu khách hàng ứng dụng tài chính. Luôn hướng tới sự tinh tế, dễ tiếp cận và thiết kế vị nhân sinh (User-Centered Design). Rất hào hứng giúp các bạn sinh viên xây dựng tư duy Design Thinking và hoàn thiện UI/UX Case Study chuẩn quốc tế.",
@@ -187,7 +187,7 @@ const MENTORS = [
   },
   {
     id: "m4",
-    name: "Đặng Thùy Dương",
+    name: "Độ Mixue",
     avatar: "images/avatars/m4.jpg",
     title: "Academic Director & IELTS 8.5 Master Coach",
     bio: "Giảng viên chuyên ngữ với hơn 9 năm luyện thi chứng chỉ quốc tế IELTS và kỹ năng viết học thuật cho ứng viên học bổng chính phủ. Từng giúp hơn 200 học viên nâng band điểm từ 6.0 lên 7.5+ trong thời gian tối ưu. Định hướng đào tạo bài bản về tư duy phản biện, cấu trúc lập luận và phản xạ giao tiếp tự nhiên.",
@@ -236,7 +236,7 @@ const MENTORS = [
   },
   {
     id: "m5",
-    name: "Nguyễn Đức Huy",
+    name: "Thủ Khoa Khối A ",
     avatar: "images/avatars/m5.jpg",
     title: "Engineering Manager & Cloud Architect @ VNG Corporation",
     bio: "Hơn 11 năm kinh nghiệm trong ngành phần mềm, chịu trách nhiệm kiến trúc đám mây và hệ thống phân tán phục vụ hàng chục triệu người dùng. Có kinh nghiệm sâu sắc về Agile/Scrum, quản trị dự án công nghệ và phát triển năng lực đội ngũ kỹ sư trẻ. Luôn sẵn sàng chia sẻ cách quản lý dự án hiệu quả và định hướng sự nghiệp IT đường dài.",
@@ -284,7 +284,7 @@ const MENTORS = [
   },
   {
     id: "m6",
-    name: "Vũ Mai Phương",
+    name: "Trường Giang",
     avatar: "images/avatars/m6.jpg",
     title: "Digital Growth & MarTech Consultant @ Ogilvy Vietnam",
     bio: "Chuyên gia tiếp thị kỹ thuật số và tối ưu hóa chuyển đổi với hơn 5 năm tư vấn chiến dịch cho các tập đoàn FMCG và công nghệ đa quốc gia. Thế mạnh về Data-Driven Marketing, Performance Ads và chiến lược thương hiệu cá nhân. Hướng dẫn sinh viên xây dựng tư duy tiếp thị số bài bản, không chỉ dừng lại ở các mẹo vặt ngắn hạn.",
@@ -333,7 +333,7 @@ const MENTORS = [
   },
   {
     id: "m7",
-    name: "Hoàng Bích Ngọc",
+    name: "Giáo Viên Âm Nhạc",
     avatar: "images/avatars/m7.jpg",
     title: "HR Director & Career Coach @ Talentnet Group",
     bio: "Chuyên gia quản trị nhân sự và khai vấn nghề nghiệp với hơn 10 năm kinh nghiệm phỏng vấn tuyển dụng hàng nghìn ứng viên cho các tập đoàn lớn. Chuyên gia tư vấn tái cấu trúc CV, rèn luyện kỹ năng phỏng vấn theo phương pháp STAR và xây dựng phong thái tự tin trước nhà tuyển dụng.",
@@ -381,7 +381,7 @@ const MENTORS = [
   },
   {
     id: "m8",
-    name: "Đỗ Quang Hưng",
+    name: " Huy Forum",
     avatar: "images/avatars/m8.jpg",
     title: "AI Research Scientist @ VinAI Research",
     bio: "Nghiên cứu sinh và kỹ sư AI chuyên sâu về thị giác máy tính (Computer Vision) và mô hình ngôn ngữ lớn (LLM). Tác giả của nhiều bài báo khoa học xuất bản tại CVPR, NeurIPS. Luôn tâm niệm rằng việc làm chủ toán và thuật toán nền tảng là chìa khóa để tiến xa trong kỷ nguyên bùng nổ trí tuệ nhân tạo.",
@@ -430,7 +430,7 @@ const MENTORS = [
   },
   {
     id: "m9",
-    name: "Bùi Tấn Phát",
+    name: "Anh 3",
     avatar: "images/avatars/m9.jpg",
     title: "Full-Stack Web Architect @ Shopee Vietnam",
     bio: "Kỹ sư kiến trúc phần mềm với hơn 8 năm chinh chiến xây dựng các hệ thống thương mại điện tử chịu tải hàng triệu request mỗi giây. Đam mê mã nguồn mở, clean architecture và tối ưu hóa trải nghiệm tương tác người dùng. Giúp sinh viên nắm vững bức tranh toàn cảnh từ database, API đến giao diện người dùng mượt mà.",
@@ -478,7 +478,7 @@ const MENTORS = [
   },
   {
     id: "m10",
-    name: "Trịnh Quốc Bảo",
+    name: "Thầy daden",
     avatar: "images/avatars/m10.jpg",
     title: "Senior Product Manager @ ZaloPay",
     bio: "Quản lý sản phẩm với hơn 7 năm kinh nghiệm dẫn dắt các tính năng thanh toán số và ví điện tử. Chuyên gia về phân tích yêu cầu nghiệp vụ, nghiên cứu hành vi người dùng và phương pháp luận Agile/Scrum. Giúp sinh viên và các bạn trẻ rèn luyện tư duy phản biện, kỹ năng thuyết trình ý tưởng dự án và làm việc nhóm hiệu quả.",
@@ -526,7 +526,7 @@ const MENTORS = [
   },
   {
     id: "m11",
-    name: "Ngô Quỳnh Chi",
+    name: "John Pork  ",
     avatar: "images/avatars/m11.jpg",
     title: "Data Analytics Consultant @ PwC Vietnam",
     bio: "Cố vấn phân tích kinh doanh và dữ liệu tài chính với hơn 6 năm làm việc cùng các doanh nghiệp đa quốc gia. Chuyên môn sâu về SQL nâng cao, PowerBI, Tableau và Python trực quan hóa dữ liệu kinh doanh. Rất tâm huyết hướng dẫn sinh viên khối ngành kinh tế và CNTT kết nối tư duy kinh doanh với kỹ năng kỹ thuật dữ liệu.",
@@ -575,7 +575,7 @@ const MENTORS = [
   },
   {
     id: "m12",
-    name: "Phan Gia Huy",
+    name: "Trấn Thành",
     avatar: "images/avatars/m12.jpg",
     title: "DevOps Lead @ Techcom Securities",
     bio: "Kỹ sư trưởng hạ tầng tự động hóa và điện toán đám mây. Hơn 8 năm vận hành hệ thống CI/CD, Kubernetes và Cloud Native trên AWS và GCP cho hệ thống tài chính chứng khoán. Định hướng sinh viên tiếp cận chuẩn các tiêu chuẩn vận hành công nghệ hiện đại, tính sẵn sàng cao và bảo mật thông tin.",
