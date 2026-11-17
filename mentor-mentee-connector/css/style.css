@@ -2,6 +2,7 @@
  * HỆ THỐNG GIAO DIỆN CHÍNH (MAIN STYLESHEET)
  * Cổng kết nối Cố vấn & Học nhóm (Mentor-Mentee Connector)
  * Tuân thủ phương pháp BEM, sử dụng CSS Variables và Flexbox toàn diện.
+ * Không dùng !important, chuẩn WCAG AA.
  */
 
 /* ==========================================================================
@@ -47,6 +48,21 @@
   --color-text-muted: #64748b;
   --color-text-subtle: #94a3b8;
   --color-text-inverse: #ffffff;
+
+  /* Bảng màu bổ trợ chủ đề học tập */
+  --study-blue: #4f46e5;
+  --study-blue-soft: #e0e7ff;
+  --study-blue-ink: #3730a3;
+  --study-mint: #0d9488;
+  --study-mint-soft: #ccfbf1;
+  --study-mint-ink: #115e59;
+  --study-pink: #db2777;
+  --study-pink-soft: #fce7f3;
+  --study-pink-ink: #9d174d;
+  --study-amber: #d97706;
+  --study-amber-soft: #fef3c7;
+  --study-amber-ink: #92400e;
+  --grad-brand: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #db2777 100%);
 
   /* Typography */
   --font-family-base: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -165,13 +181,13 @@ button {
   outline-offset: 2px;
 }
 
-/* Tôn trọng người dùng tắt hiệu ứng */
+/* Tôn trọng người dùng chọn giảm chuyển động (hoàn toàn không dùng !important) */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
   }
 }
 
@@ -464,6 +480,7 @@ button {
 
 .c-btn--primary {
   background-color: var(--color-primary);
+  background-image: var(--grad-brand);
   color: var(--color-text-inverse);
   box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
 }
@@ -471,7 +488,7 @@ button {
 .c-btn--primary:hover:not(:disabled) {
   background-color: var(--color-primary-hover);
   color: var(--color-text-inverse);
-  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 6px 14px rgba(124, 58, 237, 0.35);
   transform: translateY(-1px);
 }
 
@@ -628,7 +645,6 @@ button {
 /* ==========================================================================
    6. BỘ LỌC CHIP & SKILLS TAGS (FLEXBOX BẮT BUỘC)
    ========================================================================== */
-/* Hàng chip bộ lọc kỹ năng: Flexbox flex-wrap */
 .c-chip-group {
   display: flex;
   flex-wrap: wrap;
@@ -660,8 +676,9 @@ button {
 
 .c-chip[aria-pressed="true"], .c-chip--active {
   background-color: var(--color-primary);
+  background-image: var(--grad-brand);
   color: var(--color-text-inverse);
-  border-color: var(--color-primary);
+  border-color: transparent;
   box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
   font-weight: var(--font-weight-semibold);
 }
@@ -683,6 +700,7 @@ button {
   color: var(--color-primary-dark);
   background-color: var(--color-primary-light);
   border-radius: var(--radius-full);
+  border: 1px solid transparent;
   line-height: 1.2;
   transition: all var(--transition-fast);
 }
@@ -694,6 +712,22 @@ button {
   border: 1px solid #f59e0b;
   font-weight: var(--font-weight-bold);
   box-shadow: 0 1px 3px rgba(245, 158, 11, 0.2);
+}
+
+/* Màu xoay vòng cho các kỹ năng phong cách hiện đại */
+.c-skill-tags .c-skill-tag:not(.c-skill-tag--highlight):nth-child(4n+2) {
+  background-color: var(--study-mint-soft);
+  color: var(--study-mint-ink);
+}
+
+.c-skill-tags .c-skill-tag:not(.c-skill-tag--highlight):nth-child(4n+3) {
+  background-color: var(--study-pink-soft);
+  color: var(--study-pink-ink);
+}
+
+.c-skill-tags .c-skill-tag:not(.c-skill-tag--highlight):nth-child(4n+4) {
+  background-color: var(--study-amber-soft);
+  color: var(--study-amber-ink);
 }
 
 /* ==========================================================================
@@ -838,7 +872,6 @@ button {
 }
 
 /* Trạng thái 3: Đã kín (Booked / Disabled) */
-/* Phân biệt bằng: màu nền xám nhạt, viền đứt nét, chữ gạch ngang, nhãn 'Đã đặt' */
 .c-slot--booked {
   background-color: #f1f5f9;
   border-color: #cbd5e1;
@@ -860,7 +893,6 @@ button {
 }
 
 /* Trạng thái 4: Đã qua (Past / Disabled) */
-/* Phân biệt bằng: màu xám mờ hơn, biểu tượng đồng hồ khóa/gạch */
 .c-slot--past {
   background-color: #f8fafc;
   border-color: #e2e8f0;
@@ -958,7 +990,20 @@ button {
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
   position: relative;
+  overflow: hidden;
 }
+
+.c-mentor-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--color-primary);
+}
+
+.c-mentor-card-wrapper:nth-child(4n+2) .c-mentor-card::before { background: var(--study-mint); }
+.c-mentor-card-wrapper:nth-child(4n+3) .c-mentor-card::before { background: var(--study-pink); }
+.c-mentor-card-wrapper:nth-child(4n+4) .c-mentor-card::before { background: var(--study-amber); }
 
 .c-mentor-card:hover {
   transform: translateY(-4px);
@@ -1066,7 +1111,9 @@ button {
   font-weight: var(--font-weight-medium);
 }
 
-/* Avatar CSS Thuần & Hình ảnh đại diện */
+/* ==========================================================================
+   AVATAR CSS THUẦN & HÌNH ẢNH ĐẠI DIỆN
+   ========================================================================== */
 .c-avatar {
   display: inline-flex;
   align-items: center;
@@ -1095,6 +1142,14 @@ button {
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+.c-avatar--fallback-active .c-avatar__img {
+  display: none;
+}
+
+.c-avatar--fallback-active .c-avatar__fallback {
+  display: inline-flex;
 }
 
 .c-avatar--sm {
@@ -1130,6 +1185,7 @@ button {
   padding: var(--spacing-12) 0 var(--spacing-8) 0;
   border-bottom: 1px solid var(--color-border);
   text-align: center;
+  position: relative;
 }
 
 .c-hero__badge {
@@ -1137,8 +1193,8 @@ button {
   align-items: center;
   gap: var(--spacing-2);
   padding: var(--spacing-1) var(--spacing-3);
-  background-color: var(--color-primary-light);
-  color: var(--color-primary-dark);
+  background-color: var(--study-amber-soft);
+  color: var(--study-amber-ink);
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
@@ -1180,6 +1236,12 @@ button {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   align-items: center;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.c-search-bar:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--study-blue-soft);
 }
 
 .c-search-bar__input-wrapper {
@@ -1228,7 +1290,16 @@ button {
   background-color: var(--color-bg-body);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  transition: transform var(--transition-normal);
 }
+
+.c-step-card:hover {
+  transform: translateY(-2px);
+}
+
+.c-step-card:nth-child(1) { border-top: 3px solid var(--study-blue); }
+.c-step-card:nth-child(2) { border-top: 3px solid var(--study-mint); }
+.c-step-card:nth-child(3) { border-top: 3px solid var(--study-pink); }
 
 .c-step-card__num {
   width: 40px;
@@ -1243,6 +1314,10 @@ button {
   font-size: var(--font-size-base);
   flex-shrink: 0;
 }
+
+.c-step-card:nth-child(1) .c-step-card__num { background: var(--study-blue); }
+.c-step-card:nth-child(2) .c-step-card__num { background: var(--study-mint); }
+.c-step-card:nth-child(3) .c-step-card__num { background: var(--study-pink); }
 
 .c-step-card__title {
   font-size: var(--font-size-base);
@@ -1555,6 +1630,10 @@ button {
   gap: var(--spacing-4);
 }
 
+.c-stat-card:nth-child(1) .c-stat-card__icon { background-color: var(--study-blue-soft); }
+.c-stat-card:nth-child(2) .c-stat-card__icon { background-color: var(--study-amber-soft); }
+.c-stat-card:nth-child(3) .c-stat-card__icon { background-color: var(--study-mint-soft); }
+
 .c-stat-card__icon {
   width: 48px;
   height: 48px;
@@ -1620,6 +1699,7 @@ button {
 .c-booking-card {
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
+  border-left: 5px solid var(--color-primary);
   border-radius: var(--radius-lg);
   padding: var(--spacing-6);
   box-shadow: var(--shadow-sm);
@@ -1907,7 +1987,8 @@ button {
   color: #94a3b8;
   padding: var(--spacing-12) 0 var(--spacing-6) 0;
   margin-top: auto;
-  border-top: 1px solid #1e293b;
+  border-top: 4px solid;
+  border-image: linear-gradient(90deg, #4f46e5, #0d9488, #db2777, #d97706) 1;
   font-size: var(--font-size-sm);
 }
 
