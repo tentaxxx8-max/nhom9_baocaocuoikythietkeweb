@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentor Connect - Cổng kết nối Cố vấn & Học nhóm</title>
+  <meta name="description" content="Nền tảng kết nối người học và cố vấn chuyên môn 1-1 theo kỹ năng mục tiêu và lịch rảnh linh hoạt.">
+
+  <!-- Google Fonts: Be Vietnam Pro kèm fallback system font khi offline -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS hệ thống -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & THANH ĐIỀU HƯỚNG CHUNG
+       ========================================================================== -->
+  <header class="c-header">
+    <div class="l-container c-header__inner">
+      <a href="index.html" class="c-logo" aria-label="Mentor Connect - Về trang chủ">
+        <span class="c-logo__icon" aria-hidden="true">🤝</span>
+        <div class="c-logo__text">
+          <span class="c-logo__title">Mentor Connect</span>
+          <span class="c-logo__sub">Cổng kết nối Cố vấn & Học nhóm</span>
+        </div>
+      </a>
+
+      <!-- Nút Hamburger Menu trên di động -->
+      <button type="button" class="c-hamburger js-hamburger-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="main-nav">
+        <span class="c-hamburger__line"></span>
+        <span class="c-hamburger__line"></span>
+        <span class="c-hamburger__line"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <nav id="main-nav" class="c-nav js-nav-menu" aria-label="Thanh điều hướng chính">
+        <ul class="c-nav__list">
+          <li>
+            <a href="index.html" class="c-nav__link c-nav__link--active" aria-current="page">
+              <span aria-hidden="true">🏠</span> Trang chủ
+            </a>
+          </li>
+          <li>
+            <a href="my-bookings.html" class="c-nav__link">
+              <span aria-hidden="true">📅</span> Lịch hẹn của tôi
+              <span class="c-nav__badge js-nav-upcoming-badge c-nav__badge--empty" aria-label="Số buổi sắp tới">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO BANNER & TÌM KIẾM CỐ VẤN
+       ========================================================================== -->
+  <section class="c-hero" aria-labelledby="hero-title">
+    <div class="l-container">
+      <div class="c-hero__badge">
+        <span aria-hidden="true">✨</span> Phân hệ 5: Cố vấn & Học tập 1-1
+      </div>
+      <h1 id="hero-title" class="c-hero__title">
+        Kết nối Cố vấn Chuyên môn<br>Nâng tầm Năng lực Học tập
+      </h1>
+      <p class="c-hero__desc">
+        Tìm kiếm mentor phù hợp theo kỹ năng mục tiêu, đối soát lịch rảnh thông minh và đặt lịch học 1-1 nhanh chóng chỉ trong vài thao tác.
+      </p>
+
+      <!-- Form tìm kiếm từ khóa -->
+      <form class="c-search-bar" id="search-form" role="search" onsubmit="return false;">
+        <div class="c-search-bar__input-wrapper">
+          <span class="c-search-bar__icon" aria-hidden="true">🔍</span>
+          <label for="keyword-input" class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Tìm kiếm theo tên, chức danh, kỹ năng</label>
+          <input 
+            type="search" 
+            id="keyword-input" 
+            class="c-input c-search-bar__input" 
+            placeholder="Nhập tên cố vấn, chức danh, kỹ năng (ví dụ: Web, Python, UI/UX...)"
+            autocomplete="off"
+            aria-label="Tìm kiếm cố vấn"
+          >
+        </div>
+        <button type="submit" class="c-btn c-btn--primary c-btn--lg" id="search-submit-btn">
+          Tìm cố vấn
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ĐIỂM NHẤN TẦM NHÌN: CÁCH HOẠT ĐỘNG 3 BƯỚC
+       ========================================================================== -->
+  <section class="c-steps-section" aria-labelledby="steps-title">
+    <div class="l-container">
+      <h2 id="steps-title" class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Cách Mentor Connect hoạt động</h2>
+      <div class="c-steps-grid">
+        <article class="c-step-card">
+          <div class="c-step-card__num">1</div>
+          <div>
+            <h3 class="c-step-card__title">Chọn kỹ năng mục tiêu</h3>
+            <p class="c-step-card__desc">Khám phá danh mục cố vấn chuyên gia từ Web, Data, AI, Thiết kế đến Luyện thi chứng chỉ quốc tế.</p>
+          </div>
+        </article>
+
+        <article class="c-step-card">
+          <div class="c-step-card__num">2</div>
+          <div>
+            <h3 class="c-step-card__title">Ghép lịch rảnh tức thì</h3>
+            <p class="c-step-card__desc">Hệ thống tự động hiển thị các khung giờ rảnh 60 phút trong 7 ngày tới, loại trừ giờ đã kín.</p>
+          </div>
+        </article>
+
+        <article class="c-step-card">
+          <div class="c-step-card__num">3</div>
+          <div>
+            <h3 class="c-step-card__title">Học 1-1 & Đánh giá 360°</h3>
+            <p class="c-step-card__desc">Gặp gỡ trực tuyến, trao đổi chuyên môn sâu và nhận phản hồi toàn diện theo 4 tiêu chuẩn.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       KHỐI CHÍNH: DANH SÁCH & BỘ LỌC CỐ VẤN
+       ========================================================================== -->
+  <main class="l-main">
+    <div class="l-container">
+
+      <!-- Tiêu đề & Chọn sắp xếp -->
+      <div class="l-flex l-justify-between l-items-center l-flex-wrap l-gap-4" style="margin-bottom: var(--spacing-4);">
+        <div>
+          <h2 class="c-section-title" style="margin-bottom: var(--spacing-1);">
+            <span aria-hidden="true">👥</span> Đội ngũ Cố vấn Chuyên môn
+          </h2>
+          <p id="results-count" class="l-gap-2" style="font-size: var(--font-size-sm); color: var(--color-text-muted);" aria-live="polite">
+            Đang tải dữ liệu...
+          </p>
+        </div>
+
+        <!-- Bộ chọn sắp xếp -->
+        <div class="l-flex l-items-center l-gap-2">
+          <label for="sort-select" style="font-size: var(--font-size-sm); color: var(--color-text-muted); font-weight: var(--font-weight-medium); white-space: nowrap;">
+            Sắp xếp theo:
+          </label>
+          <select id="sort-select" class="c-select" style="width: auto; padding-right: var(--spacing-8);">
+            <option value="rating-desc">Đánh giá cao nhất</option>
+            <option value="exp-desc">Nhiều kinh nghiệm nhất</option>
+            <option value="name-asc">Tên A-Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Bộ lọc chip kỹ năng (Flexbox Bắt buộc, flex-wrap) -->
+      <div class="c-chip-group" id="skill-chips-container" role="group" aria-label="Bộ lọc kỹ năng">
+        <!-- Render động từ SKILLS -->
+      </div>
+
+      <!-- Danh sách thẻ Cố vấn (Flexbox 3 cột / 2 cột / 1 cột) -->
+      <section id="mentor-list-container" class="c-mentor-list" aria-label="Danh sách các cố vấn">
+        <!-- Render động qua home.js -->
+      </section>
+
+      <!-- Trạng thái khi không tìm thấy kết quả (Empty State) -->
+      <div id="no-results-state" class="c-empty-state" style="display: none;">
+        <div class="c-empty-state__icon" aria-hidden="true">🔎</div>
+        <h3 class="c-empty-state__title">Không tìm thấy cố vấn phù hợp</h3>
+        <p class="c-empty-state__desc">
+          Rất tiếc, không có cố vấn nào khớp với từ khóa tìm kiếm và kỹ năng bạn đã chọn. Vui lòng thử từ khóa khác hoặc đặt lại bộ lọc.
+        </p>
+        <button type="button" class="c-btn c-btn--outline" id="clear-filters-btn">
+          <span aria-hidden="true">↺</span> Đặt lại bộ lọc
+        </button>
+      </div>
+
+      <!-- ==========================================================================
+           ĐIỂM NHẤN TẦM NHÌN: LỘ TRÌNH PHÁT TRIỂN (ROADMAP)
+           ========================================================================== -->
+      <section class="c-roadmap-section" aria-labelledby="roadmap-title">
+        <div class="c-roadmap__header">
+          <span class="c-roadmap__badge">Tầm nhìn dài hạn</span>
+          <h2 id="roadmap-title" class="c-roadmap__title">Lộ trình Phát triển Phân hệ 5</h2>
+          <p class="c-roadmap__desc">
+            Hướng tới hệ sinh thái cố vấn học tập thông minh toàn diện cho sinh viên và giảng viên
+          </p>
+        </div>
+
+        <div class="c-roadmap__grid">
+          <article class="c-roadmap__card">
+            <span class="c-roadmap__tag">Sắp ra mắt</span>
+            <h3 class="c-roadmap__card-title">Ghép cặp AI Thông minh</h3>
+            <p class="c-roadmap__card-desc">
+              Thuật toán tự động phân tích hồ sơ năng lực học tập, mục tiêu nghề nghiệp và khoảng trống kỹ năng để gợi ý cố vấn tối ưu nhất.
+            </p>
+          </article>
+
+          <article class="c-roadmap__card">
+            <span class="c-roadmap__tag">Sắp ra mắt</span>
+            <h3 class="c-roadmap__card-title">Phòng học ảo Tích hợp</h3>
+            <p class="c-roadmap__card-desc">
+              Tích hợp WebRTC video call độ trễ thấp, chia sẻ màn hình, bảng vẽ cộng tác (Whiteboard) và ghi chú buổi học tương tác thời gian thực.
+            </p>
+          </article>
+
+          <article class="c-roadmap__card">
+            <span class="c-roadmap__tag">Sắp ra mắt</span>
+            <h3 class="c-roadmap__card-title">Đánh giá 360° Hai chiều</h3>
+            <p class="c-roadmap__card-desc">
+              Quy chuẩn đánh giá năng lực đa chiều giữa Mentor và Mentee, theo dõi tiến độ hoàn thành mục tiêu học tập qua từng sprint tuần.
+            </p>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER DÙNG CHUNG
+       ========================================================================== -->
+  <footer class="c-footer">
+    <div class="l-container">
+      <div class="c-footer__grid">
+        <div class="c-footer__col" style="flex: 2 1 320px;">
+          <div class="c-logo" style="margin-bottom: var(--spacing-3); color: #ffffff;">
+            <span class="c-logo__icon" style="box-shadow: none;" aria-hidden="true">🤝</span>
+            <span class="c-logo__title" style="color: #ffffff; font-size: var(--font-size-lg);">Mentor Connect</span>
+          </div>
+          <p style="font-size: var(--font-size-xs); line-height: 1.6; max-width: 380px;">
+            Hệ thống Cổng kết nối Cố vấn & Học nhóm (Mentor-Mentee Connector). Sản phẩm bài tập lớn học phần Thiết kế Web hiện đại, xây dựng bằng HTML5 ngữ nghĩa, CSS3 Flexbox và JavaScript thuần.
+          </p>
+        </div>
+
+        <div class="c-footer__col">
+          <h4 class="c-footer__title">Liên kết nhanh</h4>
+          <ul class="c-footer__links">
+            <li><a href="index.html" class="c-footer__link">Tìm kiếm Cố vấn</a></li>
+            <li><a href="my-bookings.html" class="c-footer__link">Lịch hẹn của tôi</a></li>
+            <li><a href="#hero-title" class="c-footer__link">Đầu trang</a></li>
+          </ul>
+        </div>
+
+        <div class="c-footer__col">
+          <h4 class="c-footer__title">Thông tin sinh viên</h4>
+          <ul class="c-footer__links" style="font-size: var(--font-size-xs);">
+            <li>Người học mẫu: <strong>Nguyễn Minh Anh</strong></li>
+            <li>Phân hệ 5: Mentor-Mentee Connector</li>
+            <li>Môi trường: Front-end thuần (Zero-dependency)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="c-footer__bottom">
+        <div>&copy; 2026 Mentor-Mentee Connector. Học phần Thiết kế Web. Giữ toàn quyền tác giả.</div>
+        <div>Chuẩn WCAG AA • CSS Flexbox Layout • Vanilla JavaScript (ES6+)</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS: Nạp đúng thứ tự phụ thuộc bắt buộc
+       data.js -> utils.js -> storage.js -> common.js -> home.js
+       ========================================================================== -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+
+</body>
+</html>
